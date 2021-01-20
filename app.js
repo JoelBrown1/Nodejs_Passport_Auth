@@ -3,6 +3,10 @@ const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 // connecting to the mongoose database
 const mongoose = require('mongoose');
+//adding flash notifications
+const flash = require('connect-flash')
+// adding sessions
+const session = require('express-session');
 
 // basic express server
 const app = express();
@@ -26,6 +30,25 @@ app.set('view engine', 'ejs');
 // BodyParsser middleware
 app.use(express.urlencoded({ extended: false}));
 
+// adding express-sessions middleware
+// https://www.npmjs.com/package/express-session
+app.use(session({
+  secret: 'secret',
+  resave: true,
+  saveUninitialized: true,
+  // cookie: { secure: true }
+}));
+
+// adding in middlewarre for the flash notifications
+app.use(flash());
+
+// adding global vars for different types of notifications
+// always needs req, res, next - not sure what next does...
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  next();
+})
 
 // bring in the different rouutes the app needs to knoow about
 app.use('/', require('./routes/index'));

@@ -76,6 +76,12 @@ router.post('/register', (req, res) => {
               // save the user to the "Collection" db - test1
               newUser.save()
                 .then( user => {
+                  /**
+                   * before redirecting to the login page
+                   * let the user knoow that they have successfully loged in
+                   */
+                  req.flash('success_msg', "youu have successfully registered and can log in")
+                  // go to the login page
                   res.redirect('/users/login')
                 })
                 .catch(err => console.log('there was an error trying to save the user: ', err))
