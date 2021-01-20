@@ -7,6 +7,10 @@ const mongoose = require('mongoose');
 const flash = require('connect-flash')
 // adding sessions
 const session = require('express-session');
+// bring in Passport
+const passport = require('passport')
+// bringing in Passport config
+require('./config/passport')(passport);
 
 // basic express server
 const app = express();
@@ -39,6 +43,10 @@ app.use(session({
   // cookie: { secure: true }
 }));
 
+// middleware for passport
+app.use(passport.initialize());
+app.use(passport.session());
+
 // adding in middlewarre for the flash notifications
 app.use(flash());
 
@@ -47,8 +55,9 @@ app.use(flash());
 app.use((req, res, next) => {
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error'); // error from users login authenticate
   next();
-})
+});
 
 // bring in the different rouutes the app needs to knoow about
 app.use('/', require('./routes/index'));

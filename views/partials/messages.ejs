@@ -24,3 +24,12 @@
     <button type="button" class="close close_icon" data-bs-dismiss="alert" aria-label="Close">X</button>
   </div>
 <% } %>
+
+<% /* checking for errors coming from passport in users login authenticate */ %>
+<% console.log('what is the error_msg: ', error) %>
+<% if( error.length !== 0 ) { %>
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Holy guacamole! - fail</strong> <%= error %>
+    <button type="button" class="close close_icon" data-bs-dismiss="alert" aria-label="Close">X</button>
+  </div>
+<% } %>

@@ -3,6 +3,8 @@ const User = require('../models/User');
 const router = express.Router();
 // encrypting library
 const bcrypt = require('bcryptjs');
+//need passport
+const passport = require('passport');
 
 // bring in the user model
 const Useer = require('../models/User');
@@ -80,7 +82,7 @@ router.post('/register', (req, res) => {
                    * before redirecting to the login page
                    * let the user knoow that they have successfully loged in
                    */
-                  req.flash('success_msg', "youu have successfully registered and can log in")
+                  req.flash('success_msg', "you have successfully registered and can log in")
                   // go to the login page
                   res.redirect('/users/login')
                 })
@@ -89,5 +91,17 @@ router.post('/register', (req, res) => {
         }
     })
   }
+});
+
+// login handle to authenticate
+router.post('/login', (req, res, next) => {
+  // console.log('authenticate req data: ', req);
+  // console.log('authenticate res data: ', res);
+
+  passport.authenticate('local', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/users/login',
+    failureFlash: true
+  })(req, res, next)
 });
 module.exports = router;
