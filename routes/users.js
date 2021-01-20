@@ -1,5 +1,11 @@
 const express = require('express');
+const User = require('../models/User');
 const router = express.Router();
+// encrypting library
+const bcrypt = require('bcryptjs');
+
+// bring in the user model
+const Useer = require('../models/User');
 
 // login page path
 router.get('/login', (req, res) => res.render("login"));
@@ -34,7 +40,48 @@ router.post('/register', (req, res) => {
       password2
     })
   } else {
-    res.send('pass');
+    // validation passes
+    User.findOne({email: email})
+      .then(user => {
+        if (user) {
+          errrors.push({msg: 'that email is already taken'});
+          res.render('register', {
+            errors,
+            name,
+            email,
+            password,
+            password2
+          })
+        } else {
+          // creatte a new instance of user
+          const newUser = new User({
+            name,
+            email,
+            password
+          });
+          // console.log('this is the new user: ', newUser);
+          // res.send('new user is created');
+
+          // HASH password
+          // generate a sault
+          bcrypt.genSalt(10, (err, salt) => bcrypt.hash(
+            newUser.password, 
+            salt, 
+            (err, hash) => {
+              if(err) throw err;
+
+              // set user password to hash value
+              newUser.password = hash;
+
+              // save the user to the "Collection" db - test1
+              newUser.save()
+                .then( user => {
+                  res.redirect('/users/login')
+                })
+                .catch(err => console.log('there was an error trying to save the user: ', err))
+          }))
+        }
+    })
   }
-})
+});
 module.exports = router;
