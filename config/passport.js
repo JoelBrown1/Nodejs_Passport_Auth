@@ -26,10 +26,8 @@ module.exports = function(passport) {
       // match user based on email
       User.findOne({email: email})
         .then(user => {
-          console.log('passport user find one result: ', user);
           if(!user) {
             // done takes (error, user, {optional extra properties})
-            console.log('passport user find one no user block');
             return done(null, false, {message: 'that email isn\'t registered'});
           }
 
@@ -40,7 +38,6 @@ module.exports = function(passport) {
            * isMatch is a boolean value
            */
           bcrypt.compare(password, user.password, (err, isMatch) => {
-            console.log('passport config compare error: ', err);
             if(err) throw err;
 
             if(isMatch) {
