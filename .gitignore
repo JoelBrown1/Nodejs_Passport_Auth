@@ -105,3 +105,4 @@ dist
 /.blackbox/pubring.gpg~
 /.blackbox/pubring.kbx~
 /.blackbox/secring.gpg
+/config/keys.js
