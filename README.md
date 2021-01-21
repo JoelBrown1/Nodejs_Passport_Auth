@@ -10,8 +10,11 @@ Documentation:
   • https://gpgtools.org/
 
   to decrypt a file for use or changes:
-  terminal command - blackbox_edit_start <fileName>
+  terminal command - blackbox_edit_start <fileName> 
   to stop editing - blackbox_edit_end <fileName>
+  ( needs to be exact path to file to be decrypted including file extension
+    will also require a user and password)
+
 github:
 https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbnJSaUZseWNQemZJekJMS19uZW5QOGcxQ2I4d3xBQ3Jtc0tuVWwzY1VfdF9OWlNabU54TGl4T1VlckZDbVBkckxlNzZnNjAxRmJaMkIwSVhPQUNxaUswX1c4VFV6QWt5TDhpWXk3SHlqekV6d1ZNZm5FTXZGRjVEeGFfUlp1RlhDR3JQV01nZjB2Ti1CVTR2R2dkNA&q=https%3A%2F%2Fgithub.com%2Fbradtraversy%2Fnode_passport_login
 
