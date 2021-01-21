@@ -2,6 +2,13 @@
 learning Node with Passport auth
 youtube resource: https://www.youtube.com/watch?v=6FOq4cUdH8k
 
+Using encryption for db passwords:
+Documentation:
+• https://github.com/StackExchange/blackbox#installation-instructions
+  • order of implimenting it is a little out of order 
+  • https://docs.github.com/en/github/authenticating-to-github/generating-a-new-gpg-key
+  • https://gpgtools.org/
+
 github:
 https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbnJSaUZseWNQemZJekJMS19uZW5QOGcxQ2I4d3xBQ3Jtc0tuVWwzY1VfdF9OWlNabU54TGl4T1VlckZDbVBkckxlNzZnNjAxRmJaMkIwSVhPQUNxaUswX1c4VFV6QWt5TDhpWXk3SHlqekV6d1ZNZm5FTXZGRjVEeGFfUlp1RlhDR3JQV01nZjB2Ti1CVTR2R2dkNA&q=https%3A%2F%2Fgithub.com%2Fbradtraversy%2Fnode_passport_login
 
